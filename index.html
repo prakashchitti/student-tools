@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A fast, free and easy-to-use online calculator.">
+  <title>Smart Calculator | Student Tools</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      background: #f5f7fb;
+      color: #202124;
+    }
+
+    header {
+      height: 64px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .logo span {
+      color: #1a73e8;
+    }
+
+    .theme-btn {
+      border: none;
+      background: #f1f3f4;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    main {
+      min-height: calc(100vh - 64px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 16px;
+    }
+
+    .calculator {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.10);
+    }
+
+    .title {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 18px;
+    }
+
+    .display {
+      min-height: 115px;
+      background: #f8f9fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-align: right;
+      overflow: hidden;
+    }
+
+    #expression {
+      min-height: 25px;
+      font-size: 18px;
+      color: #6b7280;
+      word-break: break-all;
+    }
+
+    #result {
+      margin-top: 8px;
+      font-size: 38px;
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 11px;
+    }
+
+    button.calc-btn {
+      height: 66px;
+      border: none;
+      border-radius: 17px;
+      font-size: 22px;
+      font-weight: 500;
+      background: #f1f3f4;
+      color: #202124;
+      cursor: pointer;
+      transition: 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button.calc-btn:active {
+      transform: scale(0.94);
+    }
+
+    .operator {
+      background: #e8f0fe !important;
+      color: #1967d2 !important;
+    }
+
+    .clear {
+      background: #fce8e6 !important;
+      color: #d93025 !important;
+    }
+
+    .equals {
+      background: #1a73e8 !important;
+      color: white !important;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    body.dark {
+      background: #111827;
+      color: #f9fafb;
+    }
+
+    body.dark header,
+    body.dark .calculator {
+      background: #1f2937;
+      border-color: #374151;
+    }
+
+    body.dark .display {
+      background: #111827;
+      border-color: #374151;
+    }
+
+    body.dark button.calc-btn {
+      background: #374151;
+      color: white;
+    }
+
+    body.dark .theme-btn {
+      background: #374151;
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 0 16px;
+      }
+
+      main {
+        align-items: flex-start;
+        padding-top: 24px;
+      }
+
+      .calculator {
+        border-radius: 20px;
+        padding: 18px;
+      }
+
+      button.calc-btn {
+        height: 62px;
+      }
+
+      #result {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo"><span>Student</span> Tools</div>
+  <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+</header>
+
+<main>
+  <div class="calculator">
+
+    <div class="title">Smart Calculator</div>
+
+    <div class="display">
+      <div id="expression"></div>
+      <div id="result">0</div>
+    </div>
+
+    <div class="buttons">
+      <button class="calc-btn clear" onclick="clearAll()">AC</button>
+      <button class="calc-btn operator" onclick="deleteLast()">⌫</button>
+      <button class="calc-btn operator" onclick="addValue('%')">%</button>
+      <button class="calc-btn operator" onclick="addValue('/')">÷</button>
+
+      <button class="calc-btn" onclick="addValue('7')">7</button>
+      <button class="calc-btn" onclick="addValue('8')">8</button>
+      <button class="calc-btn" onclick="addValue('9')">9</button>
+      <button class="calc-btn operator" onclick="addValue('*')">×</button>
+
+      <button class="calc-btn" onclick="addValue('4')">4</button>
+      <button class="calc-btn" onclick="addValue('5')">5</button>
+      <button class="calc-btn" onclick="addValue('6')">6</button>
+      <button class="calc-btn operator" onclick="addValue('-')">−</button>
+
+      <button class="calc-btn" onclick="addValue('1')">1</button>
+      <button class="calc-btn" onclick="addValue('2')">2</button>
+      <button class="calc-btn" onclick="addValue('3')">3</button>
+      <button class="calc-btn operator" onclick="addValue('+')">+</button>
+
+      <button class="calc-btn" onclick="addValue('00')">00</button>
+      <button class="calc-btn" onclick="addValue('0')">0</button>
+      <button class="calc-btn" onclick="addValue('.')">.</button>
+      <button class="calc-btn equals" onclick="calculate()">=</button>
+    </div>
+
+    <div class="footer">Fast • Free • Easy to use</div>
+
+  </div>
+</main>
+
+<script>
+  let expression = "";
+
+  const expressionElement = document.getElementById("expression");
+  const resultElement = document.getElementById("result");
+
+  function updateDisplay() {
+    expressionElement.textContent = expression
+      .replace(/\*/g, "×")
+      .replace(/\//g, "÷");
+
+    resultElement.textContent = expression === "" ? "0" : expression;
+  }
+
+  function addValue(value) {
+    const operators = ["+", "-", "*", "/"];
+
+    if (
+      operators.includes(value) &&
+      operators.includes(expression.slice(-1))
+    ) {
+      expression = expression.slice(0, -1) + value;
+    } else {
+      expression += value;
+    }
+
+    updateDisplay();
+  }
+
+  function clearAll() {
+    expression = "";
+    expressionElement.textContent = "";
+    resultElement.textContent = "0";
+  }
+
+  function deleteLast() {
+    expression = expression.slice(0, -1);
+    updateDisplay();
+  }
+
+  function calculate() {
+    if (!expression) return;
+
+    try {
+      let processedExpression = expression.replace(
+        /(\d+(\.\d+)?)%/g,
+        "($1/100)"
+      );
+
+      const answer = Function(
+        '"use strict"; return (' + processedExpression + ')'
+      )();
+
+      if (!Number.isFinite(answer)) {
+        throw new Error();
+      }
+
+      expressionElement.textContent = expression
+        .replace(/\*/g, "×")
+        .replace(/\//g, "÷");
+
+      const roundedAnswer =
+        Math.round((answer + Number.EPSILON) * 10000000000) /
+        10000000000;
+
+      resultElement.textContent = roundedAnswer;
+      expression = String(roundedAnswer);
+
+    } catch {
+      resultElement.textContent = "Error";
+    }
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle("dark");
+
+    const button = document.querySelector(".theme-btn");
+    button.textContent =
+      document.body.classList.contains("dark") ? "☀️" : "🌙";
+  }
+
+  document.addEventListener("keydown", function(event) {
+    const key = event.key;
+
+    if ("0123456789+-*/.%".includes(key)) {
+      addValue(key);
+    } else if (key === "Enter" || key === "=") {
+      event.preventDefault();
+      calculate();
+    } else if (key === "Backspace") {
+      deleteLast();
+    } else if (key === "Escape") {
+      clearAll();
+    }
+  });
+</script>
+
+</body>
+  </html>
