@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A fast, free and easy-to-use online calculator.">
-  <title>Smart Calculator | Student Tools</title>
+
+  <meta name="description"
+        content="Student Tools offers free and simple calculators built to make student life easier.">
+
+  <title>Student Tools | Smart Tools for Students</title>
 
   <style>
     * {
@@ -13,184 +16,327 @@
       padding: 0;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      min-height: 100vh;
-      background: #f5f7fb;
-      color: #202124;
-    }
-
-    header {
-      height: 64px;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .logo {
-      font-size: 21px;
-      font-weight: 700;
-    }
-
-    .logo span {
-      color: #1a73e8;
-    }
-
-    .theme-btn {
-      border: none;
-      background: #f1f3f4;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    main {
-      min-height: calc(100vh - 64px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px 16px;
-    }
-
-    .calculator {
-      width: 100%;
-      max-width: 420px;
-      background: white;
-      border-radius: 24px;
-      padding: 22px;
-      box-shadow: 0 15px 50px rgba(0,0,0,0.10);
-    }
-
-    .title {
-      font-size: 14px;
-      color: #6b7280;
-      margin-bottom: 18px;
-    }
-
-    .display {
-      min-height: 115px;
-      background: #f8f9fa;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      padding: 18px;
-      margin-bottom: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      text-align: right;
-      overflow: hidden;
-    }
-
-    #expression {
-      min-height: 25px;
-      font-size: 18px;
-      color: #6b7280;
-      word-break: break-all;
-    }
-
-    #result {
-      margin-top: 8px;
-      font-size: 38px;
-      font-weight: 600;
-      word-break: break-all;
-    }
-
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 11px;
-    }
-
-    button.calc-btn {
-      height: 66px;
-      border: none;
-      border-radius: 17px;
-      font-size: 22px;
-      font-weight: 500;
-      background: #f1f3f4;
-      color: #202124;
-      cursor: pointer;
-      transition: 0.15s;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button.calc-btn:active {
-      transform: scale(0.94);
-    }
-
-    .operator {
-      background: #e8f0fe !important;
-      color: #1967d2 !important;
-    }
-
-    .clear {
-      background: #fce8e6 !important;
-      color: #d93025 !important;
-    }
-
-    .equals {
-      background: #1a73e8 !important;
-      color: white !important;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 12px;
-      color: #9ca3af;
+    :root {
+      --bg: #f6f8fc;
+      --card: rgba(255, 255, 255, 0.88);
+      --text: #16181d;
+      --muted: #70798b;
+      --border: #e6eaf1;
+      --primary: #1a73e8;
+      --primary-soft: #e8f0fe;
+      --green: #16884a;
+      --green-soft: #e8f7ef;
+      --purple: #7256d8;
+      --purple-soft: #f0edff;
+      --shadow: 0 18px 55px rgba(34, 48, 74, 0.10);
     }
 
     body.dark {
-      background: #111827;
-      color: #f9fafb;
+      --bg: #0d1015;
+      --card: rgba(27, 31, 39, 0.92);
+      --text: #f7f8fb;
+      --muted: #a5adbb;
+      --border: #2b313c;
+      --primary-soft: #203857;
+      --green-soft: #173b2a;
+      --purple-soft: #30284e;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
     }
 
-    body.dark header,
-    body.dark .calculator {
-      background: #1f2937;
-      border-color: #374151;
+    html {
+      scroll-behavior: smooth;
     }
 
-    body.dark .display {
-      background: #111827;
-      border-color: #374151;
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.25s;
     }
 
-    body.dark button.calc-btn {
-      background: #374151;
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1100px;
+      height: 74px;
+      margin: auto;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -0.7px;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .theme-btn {
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--bg);
+      font-size: 21px;
+      cursor: pointer;
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .hero {
+      max-width: 900px;
+      margin: auto;
+      padding: 85px 22px 60px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 9px 15px;
+      margin-bottom: 23px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .hero h1 {
+      max-width: 750px;
+      margin: auto;
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: 1.03;
+      letter-spacing: -3px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 24px auto 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 32px;
+      padding: 16px 25px;
+      border-radius: 15px;
+      background: var(--primary);
       color: white;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(26, 115, 232, 0.25);
     }
 
-    body.dark .theme-btn {
-      background: #374151;
+    .tools-section {
+      max-width: 1050px;
+      margin: auto;
+      padding: 45px 22px 80px;
     }
 
-    @media (max-width: 480px) {
-      header {
-        padding: 0 16px;
+    .section-heading {
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      font-size: 32px;
+      letter-spacing: -1px;
+    }
+
+    .section-heading p {
+      margin-top: 9px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .tool-card {
+      position: relative;
+      min-height: 285px;
+      padding: 27px;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: var(--text);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-7px);
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      font-size: 28px;
+      margin-bottom: 28px;
+    }
+
+    .calculator-icon {
+      background: var(--primary-soft);
+    }
+
+    .percentage-icon {
+      background: var(--purple-soft);
+    }
+
+    .attendance-icon {
+      background: var(--green-soft);
+    }
+
+    .tool-card h3 {
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .tool-card p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .open-tool {
+      position: absolute;
+      left: 27px;
+      bottom: 27px;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .creator-section {
+      max-width: 1050px;
+      margin: auto;
+      padding: 20px 22px 90px;
+    }
+
+    .creator-card {
+      padding: 50px 30px;
+      border-radius: 30px;
+      background: var(--text);
+      color: var(--bg);
+      text-align: center;
+    }
+
+    .creator-label {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      opacity: 0.65;
+      text-transform: uppercase;
+    }
+
+    .creator-card h2 {
+      margin-top: 17px;
+      font-size: 38px;
+      letter-spacing: -1px;
+    }
+
+    .creator-card p {
+      max-width: 540px;
+      margin: 15px auto 0;
+      opacity: 0.75;
+      line-height: 1.7;
+    }
+
+    .founder {
+      display: inline-block;
+      margin-top: 23px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid currentColor;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .tools-grid {
+        grid-template-columns: 1fr;
       }
 
-      main {
-        align-items: flex-start;
-        padding-top: 24px;
+      .tool-card {
+        min-height: 250px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .nav {
+        height: 68px;
+        padding: 0 18px;
       }
 
-      .calculator {
-        border-radius: 20px;
-        padding: 18px;
+      .logo {
+        font-size: 23px;
       }
 
-      button.calc-btn {
-        height: 62px;
+      .hero {
+        padding: 65px 18px 40px;
       }
 
-      #result {
-        font-size: 34px;
+      .hero h1 {
+        font-size: 45px;
+        letter-spacing: -2px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .tools-section {
+        padding: 38px 18px 65px;
+      }
+
+      .creator-section {
+        padding: 10px 18px 70px;
+      }
+
+      .creator-card {
+        padding: 42px 22px;
+      }
+
+      .creator-card h2 {
+        font-size: 32px;
       }
     }
   </style>
@@ -199,149 +345,188 @@
 <body>
 
 <header>
-  <div class="logo"><span>Student</span> Tools</div>
-  <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+  <div class="nav">
+
+    <div class="logo">
+      <span>Student</span> Tools
+    </div>
+
+    <button
+      class="theme-btn"
+      id="themeButton"
+      onclick="toggleTheme()"
+      aria-label="Change theme"
+    >
+      🌙
+    </button>
+
+  </div>
 </header>
 
 <main>
-  <div class="calculator">
 
-    <div class="title">Smart Calculator</div>
+  <section class="hero">
 
-    <div class="display">
-      <div id="expression"></div>
-      <div id="result">0</div>
+    <div class="badge">
+      Free tools built for students
     </div>
 
-    <div class="buttons">
-      <button class="calc-btn clear" onclick="clearAll()">AC</button>
-      <button class="calc-btn operator" onclick="deleteLast()">⌫</button>
-      <button class="calc-btn operator" onclick="addValue('%')">%</button>
-      <button class="calc-btn operator" onclick="addValue('/')">÷</button>
+    <h1>
+      Smart tools for a
+      <span>better student life.</span>
+    </h1>
 
-      <button class="calc-btn" onclick="addValue('7')">7</button>
-      <button class="calc-btn" onclick="addValue('8')">8</button>
-      <button class="calc-btn" onclick="addValue('9')">9</button>
-      <button class="calc-btn operator" onclick="addValue('*')">×</button>
+    <p>
+      Simple, fast and useful online tools designed to help
+      students calculate smarter and save time.
+    </p>
 
-      <button class="calc-btn" onclick="addValue('4')">4</button>
-      <button class="calc-btn" onclick="addValue('5')">5</button>
-      <button class="calc-btn" onclick="addValue('6')">6</button>
-      <button class="calc-btn operator" onclick="addValue('-')">−</button>
+    <a href="#tools" class="hero-button">
+      Explore Tools
+    </a>
 
-      <button class="calc-btn" onclick="addValue('1')">1</button>
-      <button class="calc-btn" onclick="addValue('2')">2</button>
-      <button class="calc-btn" onclick="addValue('3')">3</button>
-      <button class="calc-btn operator" onclick="addValue('+')">+</button>
+  </section>
 
-      <button class="calc-btn" onclick="addValue('00')">00</button>
-      <button class="calc-btn" onclick="addValue('0')">0</button>
-      <button class="calc-btn" onclick="addValue('.')">.</button>
-      <button class="calc-btn equals" onclick="calculate()">=</button>
+  <section class="tools-section" id="tools">
+
+    <div class="section-heading">
+      <h2>Student Tools</h2>
+
+      <p>
+        Choose a tool and get your answer in seconds.
+      </p>
     </div>
 
-    <div class="footer">Fast • Free • Easy to use</div>
+    <div class="tools-grid">
 
-  </div>
+      <a
+        href="smart-calculator.html"
+        class="tool-card"
+      >
+        <div class="icon calculator-icon">
+          🧮
+        </div>
+
+        <h3>Smart Calculator</h3>
+
+        <p>
+          A clean and simple calculator for fast everyday
+          calculations.
+        </p>
+
+        <div class="open-tool">
+          Open Calculator →
+        </div>
+      </a>
+
+      <a
+        href="percentage-calculator.html"
+        class="tool-card"
+      >
+        <div class="icon percentage-icon">
+          %
+        </div>
+
+        <h3>Percentage Calculator</h3>
+
+        <p>
+          Calculate percentages quickly with a simple
+          student-friendly tool.
+        </p>
+
+        <div class="open-tool">
+          Calculate Percentage →
+        </div>
+      </a>
+
+      <a
+        href="attendance-calculator.html"
+        class="tool-card"
+      >
+        <div class="icon attendance-icon">
+          🎓
+        </div>
+
+        <h3>Attendance Calculator</h3>
+
+        <p>
+          Check attendance, reach your target and know
+          how many classes you can safely miss.
+        </p>
+
+        <div class="open-tool">
+          Check Attendance →
+        </div>
+      </a>
+
+    </div>
+
+  </section>
+
+  <section class="creator-section">
+
+    <div class="creator-card">
+
+      <div class="creator-label">
+        About the Creator
+      </div>
+
+      <h2>Built by Prakash.</h2>
+
+      <p>
+        Creator of Student Tools — building simple,
+        free and useful digital tools to make student
+        life easier.
+      </p>
+
+      <div class="founder">
+        Founder & Creator • Student Tools
+      </div>
+
+    </div>
+
+  </section>
+
 </main>
 
+<footer>
+  © 2026 Student Tools • Created by Prakash
+</footer>
+
 <script>
-  let expression = "";
-
-  const expressionElement = document.getElementById("expression");
-  const resultElement = document.getElementById("result");
-
-  function updateDisplay() {
-    expressionElement.textContent = expression
-      .replace(/\*/g, "×")
-      .replace(/\//g, "÷");
-
-    resultElement.textContent = expression === "" ? "0" : expression;
-  }
-
-  function addValue(value) {
-    const operators = ["+", "-", "*", "/"];
-
-    if (
-      operators.includes(value) &&
-      operators.includes(expression.slice(-1))
-    ) {
-      expression = expression.slice(0, -1) + value;
-    } else {
-      expression += value;
-    }
-
-    updateDisplay();
-  }
-
-  function clearAll() {
-    expression = "";
-    expressionElement.textContent = "";
-    resultElement.textContent = "0";
-  }
-
-  function deleteLast() {
-    expression = expression.slice(0, -1);
-    updateDisplay();
-  }
-
-  function calculate() {
-    if (!expression) return;
-
-    try {
-      let processedExpression = expression.replace(
-        /(\d+(\.\d+)?)%/g,
-        "($1/100)"
-      );
-
-      const answer = Function(
-        '"use strict"; return (' + processedExpression + ')'
-      )();
-
-      if (!Number.isFinite(answer)) {
-        throw new Error();
-      }
-
-      expressionElement.textContent = expression
-        .replace(/\*/g, "×")
-        .replace(/\//g, "÷");
-
-      const roundedAnswer =
-        Math.round((answer + Number.EPSILON) * 10000000000) /
-        10000000000;
-
-      resultElement.textContent = roundedAnswer;
-      expression = String(roundedAnswer);
-
-    } catch {
-      resultElement.textContent = "Error";
-    }
-  }
-
   function toggleTheme() {
     document.body.classList.toggle("dark");
 
-    const button = document.querySelector(".theme-btn");
-    button.textContent =
-      document.body.classList.contains("dark") ? "☀️" : "🌙";
+    const button =
+      document.getElementById("themeButton");
+
+    if (document.body.classList.contains("dark")) {
+      button.textContent = "☀️";
+
+      localStorage.setItem(
+        "studentToolsTheme",
+        "dark"
+      );
+    } else {
+      button.textContent = "🌙";
+
+      localStorage.setItem(
+        "studentToolsTheme",
+        "light"
+      );
+    }
   }
 
-  document.addEventListener("keydown", function(event) {
-    const key = event.key;
+  if (
+    localStorage.getItem("studentToolsTheme") === "dark"
+  ) {
+    document.body.classList.add("dark");
 
-    if ("0123456789+-*/.%".includes(key)) {
-      addValue(key);
-    } else if (key === "Enter" || key === "=") {
-      event.preventDefault();
-      calculate();
-    } else if (key === "Backspace") {
-      deleteLast();
-    } else if (key === "Escape") {
-      clearAll();
-    }
-  });
+    document.getElementById(
+      "themeButton"
+    ).textContent = "☀️";
+  }
 </script>
-<a href="percentage-calculator.html">Percentage Calculator</a>
 
 </body>
-  </html>
+</html>
