@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Create a clean and professional resume with Student Tools Resume Studio."
+  >
+
+  <title>Resume Studio | Student Tools</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f4f6fa;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-soft: #eff6ff;
+      --danger: #dc2626;
+      --shadow: 0 20px 60px rgba(15, 23, 42, 0.10);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    header {
+      height: 72px;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1500px;
+      margin: auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .top-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      padding: 11px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .download-btn {
+      border: 0;
+      background: var(--primary);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .download-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .page {
+      max-width: 1500px;
+      margin: auto;
+      padding: 28px 24px 60px;
+    }
+
+    .intro {
+      margin-bottom: 25px;
+    }
+
+    .intro-badge {
+      display: inline-block;
+      padding: 7px 12px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .intro h1 {
+      font-size: 35px;
+      letter-spacing: -1.2px;
+      margin-bottom: 8px;
+    }
+
+    .intro p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .builder {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(500px, 0.95fr);
+      gap: 25px;
+      align-items: start;
+    }
+
+    .editor {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .editor-head {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .editor-head h2 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .editor-head p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .form-content {
+      padding: 24px;
+    }
+
+    .form-section {
+      padding-bottom: 28px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-section:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 17px;
+      margin-bottom: 17px;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .field {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 13px 14px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 115px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-soft);
+    }
+
+    .help {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .preview-wrap {
+      position: sticky;
+      top: 96px;
+    }
+
+    .preview-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .preview-label h2 {
+      font-size: 18px;
+    }
+
+    .preview-label span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .resume-paper {
+      width: 100%;
+      min-height: 850px;
+      background: white;
+      color: #111827;
+      border-radius: 4px;
+      box-shadow: var(--shadow);
+      padding: 48px;
+    }
+
+    .resume-header {
+      padding-bottom: 22px;
+      border-bottom: 2px solid #111827;
+    }
+
+    .resume-name {
+      font-size: 35px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+
+    .resume-title {
+      color: #2563eb;
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 7px;
+    }
+
+    .contact-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      color: #4b5563;
+      font-size: 12px;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    .resume-section {
+      margin-top: 25px;
+    }
+
+    .resume-section-title {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #111827;
+      margin-bottom: 11px;
+    }
+
+    .resume-text {
+      color: #374151;
+      font-size: 13px;
+      line-height: 1.65;
+      white-space: pre-line;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .skill {
+      background: #f3f4f6;
+      padding: 6px 9px;
+      border-radius: 5px;
+      color: #374151;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .empty-note {
+      color: #9ca3af;
+      font-size: 13px;
+      font-style: italic;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 35px;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 1050px) {
+      .builder {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-wrap {
+        position: static;
+      }
+
+      .resume-paper {
+        max-width: 800px;
+        margin: auto;
+      }
+    }
+
+    @media (max-width: 650px) {
+      header {
+        height: auto;
+      }
+
+      .header-inner {
+        padding: 14px 16px;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .top-btn {
+        display: none;
+      }
+
+      .download-btn {
+        padding: 11px 13px;
+        font-size: 13px;
+      }
+
+      .page {
+        padding: 24px 14px 50px;
+      }
+
+      .intro h1 {
+        font-size: 30px;
+      }
+
+      .grid-two {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .form-content {
+        padding: 19px;
+      }
+
+      .resume-paper {
+        padding: 30px 23px;
+        min-height: 700px;
+      }
+
+      .resume-name {
+        font-size: 27px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      header,
+      .intro,
+      .editor,
+      .preview-label,
+      .footer,
+      .back-link {
+        display: none !important;
+      }
+
+      .page {
+        max-width: none;
+        padding: 0;
+      }
+
+      .builder {
+        display: block;
+      }
+
+      .preview-wrap {
+        position: static;
+      }
+
+      .resume-paper {
+        box-shadow: none;
+        border-radius: 0;
+        width: 100%;
+        min-height: auto;
+        padding: 35px 42px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="brand">
+      <span>Student</span> Tools
+    </div>
+
+    <div class="header-actions">
+
+      <button
+        class="top-btn"
+        onclick="clearResume()"
+      >
+        Reset
+      </button>
+
+      <button
+        class="download-btn"
+        onclick="downloadResume()"
+      >
+        Download PDF
+      </button>
+
+    </div>
+
+  </div>
+</header>
+
+<div class="page">
+
+  <div class="intro">
+
+    <div class="intro-badge">
+      PROFESSIONAL RESUME BUILDER
+    </div>
+
+    <h1>Build a resume that gets noticed.</h1>
+
+    <p>
+      Create a clean, professional and ATS-friendly resume
+      with a live preview.
+    </p>
+
+  </div>
+
+  <div class="builder">
+
+    <div class="editor">
+
+      <div class="editor-head">
+        <h2>Resume Details</h2>
+
+        <p>
+          Your resume updates instantly while you type.
+        </p>
+      </div>
+
+      <div class="form-content">
+
+        <div class="form-section">
+
+          <h3 class="section-title">
+            Personal Information
+          </h3>
+
+          <div class="grid-two">
+
+            <div class="field">
+              <label>Full Name</label>
+
+              <input
+                type="text"
+                id="fullName"
+                placeholder="Prakash"
+                oninput="updateResume()"
+              >
+            </div>
+
+            <div class="field">
+              <label>Professional Title</label>
+
+              <input
+                type="text"
+                id="professionalTitle"
+                placeholder="Computer Science Student"
+                oninput="updateResume()"
+              >
+            </div>
+
+            <div class="field">
+              <label>Email</label>
+
+              <input
+                type="email"
+                id="email"
+                placeholder="you@example.com"
+                oninput="updateResume()"
+              >
+            </div>
+
+            <div class="field">
+              <label>Phone</label>
+
+              <input
+                type="tel"
+                id="phone"
+                placeholder="+91 98765 43210"
+                oninput="updateResume()"
+              >
+            </div>
+
+            <div class="field">
+              <label>Location</label>
+
+              <input
+                type="text"
+                id="location"
+                placeholder="Andhra Pradesh, India"
+                oninput="updateResume()"
+              >
+            </div>
+
+            <div class="field">
+              <label>LinkedIn</label>
+
+              <input
+                type="text"
+                id="linkedin"
+                placeholder="linkedin.com/in/yourname"
+                oninput="updateResume()"
+              >
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="form-section">
+
+          <h3 class="section-title">
+            Professional Summary
+          </h3>
+
+          <div class="field">
+
+            <textarea
+              id="summary"
+              placeholder="Write a short professional summary..."
+              oninput="updateResume()"
+            ></textarea>
+
+            <div class="help">
+              Keep it short, specific and focused on your strengths.
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="form-section">
+
+          <h3 class="section-title">
+            Education
+          </h3>
+
+          <div class="field">
+
+            <textarea
+              id="education"
+              placeholder="B.Tech in Computer Science Engineering&#10;College Name | 2024 - 2028&#10;CGPA: 8.5"
+              oninput="updateResume()"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+        <div class="form-section">
+
+          <h3 class="section-title">
+            Skills
+          </h3>
+
+          <div class="field">
+
+            <input
+              type="text"
+              id="skills"
+              placeholder="HTML, CSS, JavaScript, Python"
+              oninput="updateResume()"
+            >
+
+            <div class="help">
+              Separate each skill using a comma.
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="form-section">
+
+          <h3 class="section-title">
+            Projects
+          </h3>
+
+          <div class="field">
+
+            <textarea
+              id="projects"
+              placeholder="Student Tools Website&#10;Built a responsive student utility website using HTML, CSS and JavaScript."
+              oninput="updateResume()"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+        <div class="form-section">
+
+          <h3 class="section-title">
+            Experience
+          </h3>
+
+          <div class="field">
+
+            <textarea
+              id="experience"
+              placeholder="Tutor | Institution Name&#10;June 2026 - Present&#10;Describe your responsibilities and achievements."
+              oninput="updateResume()"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+        <div class="form-section">
+
+          <h3 class="section-title">
+            Certifications
+          </h3>
+
+          <div class="field">
+
+            <textarea
+              id="certifications"
+              placeholder="Certification Name - Organization"
+              oninput="updateResume()"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="preview-wrap">
+
+      <div class="preview-label">
+
+        <h2>Live Preview</h2>
+
+        <span>A4 Resume Preview</span>
+
+      </div>
+
+      <div
+        class="resume-paper"
+        id="resumePaper"
+      >
+
+        <div class="resume-header">
+
+          <div
+            class="resume-name"
+            id="previewName"
+          >
+            YOUR NAME
+          </div>
+
+          <div
+            class="resume-title"
+            id="previewTitle"
+          >
+            PROFESSIONAL TITLE
+          </div>
+
+          <div
+            class="contact-line"
+            id="previewContact"
+          >
+            Add your contact information
+          </div>
+
+        </div>
+
+        <div
+          class="resume-section"
+          id="summarySection"
+        >
+
+          <div class="resume-section-title">
+            Professional Summary
+          </div>
+
+          <div
+            class="resume-text"
+            id="previewSummary"
+          >
+            <span class="empty-note">
+              Add your professional summary.
+            </span>
+          </div>
+
+        </div>
+
+        <div
+          class="resume-section"
+          id="educationSection"
+        >
+
+          <div class="resume-section-title">
+            Education
+          </div>
+
+          <div
+            class="resume-text"
+            id="previewEducation"
+          >
+            <span class="empty-note">
+              Add your education details.
+            </span>
+          </div>
+
+        </div>
+
+        <div
+          class="resume-section"
+          id="skillsSection"
+        >
+
+          <div class="resume-section-title">
+            Skills
+          </div>
+
+          <div
+            class="skills-list"
+            id="previewSkills"
+          >
+
+            <span class="empty-note">
+              Add your skills.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div
+          class="resume-section"
+          id="projectsSection"
+        >
+
+          <div class="resume-section-title">
+            Projects
+          </div>
+
+          <div
+            class="resume-text"
+            id="previewProjects"
+          >
+            <span class="empty-note">
+              Add your projects.
+            </span>
+          </div>
+
+        </div>
+
+        <div
+          class="resume-section"
+          id="experienceSection"
+        >
+
+          <div class="resume-section-title">
+            Experience
+          </div>
+
+          <div
+            class="resume-text"
+            id="previewExperience"
+          >
+            <span class="empty-note">
+              Add your experience.
+            </span>
+          </div>
+
+        </div>
+
+        <div
+          class="resume-section"
+          id="certificationsSection"
+        >
+
+          <div class="resume-section-title">
+            Certifications
+          </div>
+
+          <div
+            class="resume-text"
+            id="previewCertifications"
+          >
+            <span class="empty-note">
+              Add your certifications.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <a
+    href="index.html"
+    class="back-link"
+  >
+    ← Back to Student Tools
+  </a>
+
+  <div class="footer">
+    Resume Studio • Created by Prakash
+  </div>
+
+</div>
+
+<script>
+  const fieldIds = [
+    "fullName",
+    "professionalTitle",
+    "email",
+    "phone",
+    "location",
+    "linkedin",
+    "summary",
+    "education",
+    "skills",
+    "projects",
+    "experience",
+    "certifications"
+  ];
+
+  function getValue(id) {
+    return document
+      .getElementById(id)
+      .value
+      .trim();
+  }
+
+  function updateResume() {
+    const fullName = getValue("fullName");
+
+    const professionalTitle =
+      getValue("professionalTitle");
+
+    const email = getValue("email");
+
+    const phone = getValue("phone");
+
+    const location = getValue("location");
+
+    const linkedin = getValue("linkedin");
+
+    document.getElementById(
+      "previewName"
+    ).textContent =
+      fullName || "YOUR NAME";
+
+    document.getElementById(
+      "previewTitle"
+    ).textContent =
+      professionalTitle ||
+      "PROFESSIONAL TITLE";
+
+    const contactItems = [
+      email,
+      phone,
+      location,
+      linkedin
+    ].filter(Boolean);
+
+    document.getElementById(
+      "previewContact"
+    ).textContent =
+      contactItems.length
+        ? contactItems.join(" • ")
+        : "Add your contact information";
+
+    updateTextSection(
+      "summary",
+      "previewSummary",
+      "Add your professional summary."
+    );
+
+    updateTextSection(
+      "education",
+      "previewEducation",
+      "Add your education details."
+    );
+
+    updateTextSection(
+      "projects",
+      "previewProjects",
+      "Add your projects."
+    );
+
+    updateTextSection(
+      "experience",
+      "previewExperience",
+      "Add your experience."
+    );
+
+    updateTextSection(
+      "certifications",
+      "previewCertifications",
+      "Add your certifications."
+    );
+
+    updateSkills();
+
+    saveResume();
+  }
+
+  function updateTextSection(
+    inputId,
+    previewId,
+    emptyText
+  ) {
+    const value = getValue(inputId);
+
+    const preview =
+      document.getElementById(previewId);
+
+    if (value) {
+      preview.textContent = value;
+    } else {
+      preview.innerHTML =
+        '<span class="empty-note">' +
+        emptyText +
+        "</span>";
+    }
+  }
+
+  function updateSkills() {
+    const skills = getValue("skills");
+
+    const preview =
+      document.getElementById("previewSkills");
+
+    preview.innerHTML = "";
+
+    if (!skills) {
+      preview.innerHTML =
+        '<span class="empty-note">Add your skills.</span>';
+
+      return;
+    }
+
+    skills
+      .split(",")
+      .map(skill => skill.trim())
+      .filter(Boolean)
+      .forEach(skill => {
+        const element =
+          document.createElement("span");
+
+        element.className = "skill";
+
+        element.textContent = skill;
+
+        preview.appendChild(element);
+      });
+  }
+
+  function saveResume() {
+    const resumeData = {};
+
+    fieldIds.forEach(id => {
+      resumeData[id] =
+        document.getElementById(id).value;
+    });
+
+    localStorage.setItem(
+      "studentToolsResume",
+      JSON.stringify(resumeData)
+    );
+  }
+
+  function loadResume() {
+    const savedResume =
+      localStorage.getItem(
+        "studentToolsResume"
+      );
+
+    if (!savedResume) {
+      updateResume();
+      return;
+    }
+
+    try
