@@ -1082,4 +1082,49 @@
       return;
     }
 
-    try
+        try {
+      const resumeData = JSON.parse(savedResume);
+
+      fieldIds.forEach(id => {
+        if (resumeData[id] !== undefined) {
+          document.getElementById(id).value =
+            resumeData[id];
+        }
+      });
+    } catch (error) {
+      console.log("Saved resume could not be loaded.");
+    }
+
+    updateResume();
+  }
+
+  function clearResume() {
+    const confirmed = confirm(
+      "Clear all resume details?"
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    fieldIds.forEach(id => {
+      document.getElementById(id).value = "";
+    });
+
+    localStorage.removeItem(
+      "studentToolsResume"
+    );
+
+    updateResume();
+  }
+
+  function downloadResume() {
+    window.print();
+  }
+
+  loadResume();
+</script>
+
+</body>
+
+</html>
