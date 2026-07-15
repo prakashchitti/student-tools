@@ -490,10 +490,553 @@
 </main>
 
 <footer>
-  © 2026 Student Tools • Created by Prakash
+  © 2026 Student Tools • Created by
+  <span id="prakashSecret">Prakash</span>
 </footer>
+<div id="vyshuExperience" class="vyshu-experience">
 
+  <div class="love-glow glow-one"></div>
+  <div class="love-glow glow-two"></div>
+
+  <div class="love-stars" id="loveStars"></div>
+
+  <div class="vyshu-content">
+
+    <p class="secret-whisper">
+      You found something that wasn't made for everyone.
+    </p>
+
+    <div class="vyshu-letter">
+      V
+    </div>
+
+    <h1 class="vyshu-name">
+      Vyshu
+    </h1>
+
+    <div class="love-line"></div>
+
+    <div class="love-message">
+
+      <p>
+        In a website made for thousands,<br>
+        I kept one little place only for you.
+      </p>
+
+      <p>
+        Maybe the world sees lines of code.<br>
+        But somewhere between them,<br>
+        there will always be a part of me<br>
+        that quietly belongs to you.
+      </p>
+
+      <p class="love-highlight">
+        You were never just a name in my story.
+      </p>
+
+      <p class="love-highlight">
+        You are the reason some pages feel different.
+      </p>
+
+    </div>
+
+    <div class="love-signature">
+      <span>Always yours,</span>
+      <strong>Prakash ❤️</strong>
+    </div>
+
+    <button
+      class="return-world"
+      type="button"
+      onclick="closeVyshuExperience()"
+    >
+      Return to the ordinary world →
+    </button>
+
+  </div>
+
+</div>
+ <style>
+  #prakashSecret {
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .vyshu-experience {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background:
+      radial-gradient(
+        circle at 20% 15%,
+        rgba(123, 28, 63, 0.32),
+        transparent 35%
+      ),
+      radial-gradient(
+        circle at 85% 80%,
+        rgba(91, 20, 48, 0.28),
+        transparent 38%
+      ),
+      linear-gradient(
+        145deg,
+        #070305 0%,
+        #13070c 45%,
+        #090305 100%
+      );
+    color: #fff7fa;
+    opacity: 0;
+  }
+
+  .vyshu-experience.show {
+    display: block;
+    animation: secretWorldFade 1.2s ease forwards;
+  }
+
+  .vyshu-experience.closing {
+    display: block;
+    animation: secretWorldClose 0.7s ease forwards;
+  }
+
+  .vyshu-content {
+    position: relative;
+    z-index: 5;
+    width: min(100%, 720px);
+    min-height: 100vh;
+    margin: auto;
+    padding:
+      90px
+      32px
+      70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .love-glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    opacity: 0.5;
+    animation: glowDrift 8s ease-in-out infinite alternate;
+  }
+
+  .glow-one {
+    width: 330px;
+    height: 330px;
+    top: -100px;
+    left: -110px;
+    background: rgba(150, 31, 74, 0.45);
+  }
+
+  .glow-two {
+    width: 390px;
+    height: 390px;
+    right: -170px;
+    bottom: -130px;
+    background: rgba(105, 21, 53, 0.38);
+    animation-delay: -4s;
+  }
+
+  .love-stars {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .love-star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 220, 231, 0.72);
+    box-shadow:
+      0 0 8px rgba(255, 183, 207, 0.55);
+    animation:
+      starFloat var(--star-time) linear infinite,
+      starGlow 2.4s ease-in-out infinite alternate;
+  }
+
+  .secret-whisper {
+    color: rgba(255, 225, 235, 0.56);
+    font-size: 12px;
+    letter-spacing: 2.3px;
+    text-transform: uppercase;
+    line-height: 1.8;
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .vyshu-experience.show .secret-whisper {
+    animation: revealLove 1.1s ease 0.6s forwards;
+  }
+
+  .vyshu-letter {
+    margin-top: 38px;
+    color: rgba(255, 224, 235, 0.15);
+    font-family: Georgia, serif;
+    font-size: 92px;
+    font-style: italic;
+    line-height: 0.8;
+    opacity: 0;
+    transform: scale(0.75);
+    text-shadow:
+      0 0 40px rgba(214, 74, 123, 0.28);
+  }
+
+  .vyshu-experience.show .vyshu-letter {
+    animation: revealLetter 1.6s ease 1.5s forwards;
+  }
+
+  .vyshu-name {
+    margin-top: -9px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(55px, 12vw, 88px);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -3px;
+    line-height: 1;
+    color: #fff5f8;
+    opacity: 0;
+    transform: translateY(20px);
+    text-shadow:
+      0 0 35px rgba(223, 79, 130, 0.24);
+  }
+
+  .vyshu-experience.show .vyshu-name {
+    animation: revealLove 1.3s ease 2.4s forwards;
+  }
+
+  .love-line {
+    width: 0;
+    height: 1px;
+    margin: 31px auto;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(238, 143, 176, 0.8),
+      transparent
+    );
+  }
+
+  .vyshu-experience.show .love-line {
+    animation: growLoveLine 1.4s ease 3.3s forwards;
+  }
+
+  .love-message {
+    max-width: 590px;
+  }
+
+  .love-message p {
+    margin-bottom: 25px;
+    color: rgba(255, 238, 244, 0.72);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(17px, 4vw, 20px);
+    line-height: 1.85;
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .vyshu-experience.show
+  .love-message p:nth-child(1) {
+    animation: revealLove 1.2s ease 3.9s forwards;
+  }
+
+  .vyshu-experience.show
+  .love-message p:nth-child(2) {
+    animation: revealLove 1.2s ease 4.8s forwards;
+  }
+
+  .vyshu-experience.show
+  .love-message p:nth-child(3) {
+    animation: revealLove 1.2s ease 5.7s forwards;
+  }
+
+  .vyshu-experience.show
+  .love-message p:nth-child(4) {
+    animation: revealLove 1.2s ease 6.5s forwards;
+  }
+
+  .love-message .love-highlight {
+    color: #fff5f8;
+    font-style: italic;
+    font-size: clamp(18px, 4.3vw, 22px);
+  }
+
+  .love-signature {
+    margin-top: 18px;
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .vyshu-experience.show .love-signature {
+    animation: revealLove 1.3s ease 7.3s forwards;
+  }
+
+  .love-signature span {
+    display: block;
+    color: rgba(255, 226, 236, 0.52);
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-style: italic;
+    margin-bottom: 7px;
+  }
+
+  .love-signature strong {
+    display: block;
+    color: #fff7fa;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 29px;
+    font-style: italic;
+    font-weight: 400;
+    text-shadow:
+      0 0 24px rgba(225, 74, 128, 0.28);
+  }
+
+  .return-world {
+    margin-top: 50px;
+    padding: 11px 4px;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 213, 228, 0.22);
+    background: transparent;
+    color: rgba(255, 225, 235, 0.52);
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      color 0.3s,
+      border-color 0.3s;
+  }
+
+  .vyshu-experience.show .return-world {
+    animation: revealLove 1.2s ease 8s forwards;
+  }
+
+  .return-world:hover {
+    color: #fff5f8;
+    border-color: rgba(255, 213, 228, 0.7);
+  }
+
+  body.secret-open {
+    overflow: hidden;
+  }
+
+  @keyframes secretWorldFade {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes secretWorldClose {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes revealLove {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(5px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes revealLetter {
+    from {
+      opacity: 0;
+      transform: scale(0.75);
+      filter: blur(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes growLoveLine {
+    from {
+      width: 0;
+    }
+
+    to {
+      width: 150px;
+    }
+  }
+
+  @keyframes glowDrift {
+    from {
+      transform:
+        translate3d(-15px, -10px, 0)
+        scale(0.95);
+    }
+
+    to {
+      transform:
+        translate3d(30px, 25px, 0)
+        scale(1.08);
+    }
+  }
+
+  @keyframes starFloat {
+    from {
+      transform: translateY(105vh);
+    }
+
+    to {
+      transform: translateY(-15vh);
+    }
+  }
+
+  @keyframes starGlow {
+    from {
+      opacity: 0.15;
+    }
+
+    to {
+      opacity: 0.8;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .vyshu-content {
+      padding:
+        72px
+        22px
+        55px;
+    }
+
+    .secret-whisper {
+      font-size: 9px;
+      letter-spacing: 1.8px;
+    }
+
+    .vyshu-letter {
+      font-size: 75px;
+      margin-top: 32px;
+    }
+
+    .love-line {
+      margin:
+        27px
+        auto;
+    }
+
+    .love-message p {
+      margin-bottom: 22px;
+      line-height: 1.75;
+    }
+
+    .return-world {
+      margin-top: 38px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vyshu-experience.show *,
+    .love-glow,
+    .love-star {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0s !important;
+    }
+  }
+ </style> 
 <script>
+  let secretTapCount = 0;
+let secretTapTimer;
+
+const prakashSecret = document.getElementById("prakashSecret");
+const vyshuExperience = document.getElementById("vyshuExperience");
+const loveStars = document.getElementById("loveStars");
+
+if (prakashSecret) {
+  prakashSecret.style.cursor = "pointer";
+
+  prakashSecret.addEventListener("click", function () {
+    secretTapCount++;
+
+    clearTimeout(secretTapTimer);
+
+    secretTapTimer = setTimeout(function () {
+      secretTapCount = 0;
+    }, 1800);
+
+    if (secretTapCount >= 5) {
+      secretTapCount = 0;
+      openVyshuExperience();
+    }
+  });
+}
+
+function openVyshuExperience() {
+  if (!vyshuExperience) return;
+
+  vyshuExperience.classList.add("show");
+  document.body.style.overflow = "hidden";
+
+  createLoveStars();
+}
+
+function closeVyshuExperience() {
+  if (!vyshuExperience) return;
+
+  vyshuExperience.classList.remove("show");
+  document.body.style.overflow = "";
+
+  if (loveStars) {
+    loveStars.innerHTML = "";
+  }
+}
+
+function createLoveStars() {
+  if (!loveStars) return;
+
+  loveStars.innerHTML = "";
+
+  for (let i = 0; i < 45; i++) {
+    const star = document.createElement("span");
+
+    star.className = "love-star";
+    star.innerHTML = Math.random() > 0.72 ? "♥" : "✦";
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.animationDelay = Math.random() * 4 + "s";
+    star.style.animationDuration =
+      2.5 + Math.random() * 4 + "s";
+
+    loveStars.appendChild(star);
+  }
+}
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closeVyshuExperience();
+  }
+});
   function toggleTheme() {
     document.body.classList.toggle("dark");
 
