@@ -288,8 +288,18 @@
       text-align: center;
       color: var(--muted);
       font-size: 14px;
+      position: relative;
+overflow: hidden;
     }
-
+#secretHotspot {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 35px;
+    height: 35px;
+    background: transparent;
+  cursor: pointer;
+}
     @media (max-width: 800px) {
       .tools-grid {
         grid-template-columns: 1fr;
@@ -492,6 +502,7 @@
 <footer>
   © 2026 Student Tools • Created by
   <span id="prakashSecret">Prakash</span>
+  <div id="secretHotspot"></div>
 </footer>
 <div id="vyshuExperience" class="vyshu-experience">
 
@@ -1079,6 +1090,21 @@ document.addEventListener("keydown", function (event) {
       "themeButton"
     ).textContent = "☀️";
   }
+  const hotspot = document.getElementById("secretHotspot");
+let tapCount = 0;
+
+hotspot.addEventListener("click", () => {
+    tapCount++;
+
+    if (tapCount >= 5) {
+        document.getElementById("vyshuExperience").style.display = "flex";
+        tapCount = 0;
+    }
+
+    setTimeout(() => {
+        tapCount = 0;
+    }, 1500);
+});
 </script>
 
 </body>
